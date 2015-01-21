@@ -1,4 +1,5 @@
 <?php
+
 $assetHolders = 'http://api.blockscan.com/api2?module=asset&action=holders&name=';
 //Block info link.
 $blockCount = 'http://api.blockscan.com/api2?module=proxy&action=get_running_info';
@@ -9,17 +10,18 @@ echo "Theis will execute every $blocksApart Blocks</br>";
 
 $checkblock = json_decode(file_get_contents($blockCount),true)["bitcoin_block_count"];
 echo "<br> current block count : $checkblock <br>";
-$officialTokens = array("TXXXXx", "TXOOOoo");
+$officialTokens = array("TXXXXX", "A9796902962588994000");
 
 
 //starting block reference.
-$startBlock = 340000;
+$startBlock = 338000;
 
 //distance gone in blocks from starting point.
 $endBlock = $checkblock - $startBlock;
 
 $countblock = floor($endBlock / $blocksApart);
 
+echo "<br> </br.> iterations : $countblock </br> ";
 
 if($countblock >= 1) {
 	for($x = 0; $x < $countblock; ++$x) {
@@ -37,7 +39,7 @@ if($countblock >= 1) {
 	echo "<br> Vote Token : $voteToken<br>";
 	
 	$candidates = Asset ($asset);
-		
+		var_dump($candidates);
 		if ($candidates == NULL){
 			echo "here's where is dies";
 			var_dump($officialTokens);
@@ -103,7 +105,7 @@ function Asset($asset)
 	$c = array_count_values($store);
 	$var = array_keys($c,$array_length_of_chain_token); 
 	//echo var_dump($var);
-
+	$viableAssets = Array();
 	foreach ($var as $thing){
 		$testing = $chain_token_info[0];
 		$new = json_decode(file_get_contents($assetDetail.$thing),true);
@@ -111,19 +113,24 @@ function Asset($asset)
 		$the_data = $new_data[0];
 		$circulation = $the_data["circulation"];
 		$issuer = $the_data["issuer"];
+		if (strcspn($thing, '0123456789') != strlen($thing)){
+		echo "<br> true!!!!! <br>";
+		}else{
+		echo "<br> false!!!!<br>";
+		}
 		if ($testing["circulation"] + $allowedIssuance == $circulation) {
 			if ($the_data["locked"] == "False") {
 				echo "<br> WARNING! THIS ASSET: ( $thing ) IS NOT LOCKED <br>";
 			}
-			$viableAssets = Array();
-			$viableAssets["$issuer"] = array();
+			
 			$viableAssets["$issuer"][] =$thing;
+			var_dump($viableAssets);
 			//$viableAssets["$issuer"][] = strtolower($thing);
 			echo "<br> Candidate! </br>";
 			
 			foreach ($new_data[0] as $key => $val) {
 				echo "$key : $val <br>";
-				$tester = $viableAssets;
+				
 				
 }
 } elseif ($testing["circulation"] == $circulation) {
@@ -140,7 +147,7 @@ else {
 
 }
 			var_dump($tester);
-		
+			$tester = $viableAssets;
 			return $tester;
 
 			
