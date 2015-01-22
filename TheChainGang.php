@@ -12,7 +12,7 @@ echo "<br> current block count : $checkblock <br>";
 
 $officialTokens = array("Token" => "TheChainGang", "Vote" => "A11035732284319710000"); // Original Official Tokens 
 
-$startBlock = 340000 -1008 - 1000; //starting block reference.
+$startBlock = 340000 -1008; //starting block reference.
 
 
 $endBlock = $checkblock - $startBlock; //distance gone in blocks from starting point.
