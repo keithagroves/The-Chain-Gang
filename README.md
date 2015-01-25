@@ -1,10 +1,9 @@
 # The-Chain-Gang
 
-This something I wrote in order to use counterparty tokens as placeholders to enable multiple issuers.
+Use counterparty tokens as placeholders in order to enable multiple issuers.
 
 
-#Joining The Chain Gang
-**BETA**
+#Joining The Chain Gang(BETA)
  In order to join the chain gang **you must first know what the current Asset is**. You can find this by running the program. You then: 
 
 * create an **alphabet asset**. The alphabet asset **must** be 6 characters long. You are allowed to issue 50 additional to distribute to yourself or however you please. 
