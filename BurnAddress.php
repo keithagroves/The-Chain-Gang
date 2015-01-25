@@ -2,6 +2,11 @@
 
 function burn_address ($Assets) {
 
+if (strlen($Assets) != 33) {
+	echo "error, Asset not correct length";
+	return null;
+	}
+
 
 $base58_O = array(0,O);
 
