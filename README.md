@@ -1,7 +1,7 @@
 # The-Chain-Gang
 ==========================
 Use counterparty tokens as placeholders in order to enable multiple issuers.
-
+----------------------------------------------------------------------------
 
 #Joining The Chain Gang (BETA)
  In order to join the chain gang **you must first know what the current Asset is**. You can find this by running the program. You then: 
