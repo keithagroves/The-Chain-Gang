@@ -5,7 +5,7 @@ function Burn_Tokens($officialTokens) {
 		echo "<br /> The Chain Gang Token: $asset </br>";
 		echo "<br /> Vote Token : $voteToken</br>";
 		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
-		var_dump($candidates);
+		//var_dump($candidates);
 		$poll = [];
 		foreach($candidates as $newCan)
 			{ //creating burn addresses that contain Vote & Token Name.
@@ -21,11 +21,11 @@ function Burn_Tokens($officialTokens) {
 			}
  else { unset($newcan);
 }}
-		var_dump($poll);
+		//var_dump($poll);
 		if ($candidates == NULL)
 			{
-			echo "here's where is dies";
-			var_dump($officialTokens);
+			echo "No viable Candidates! :(";
+			//var_dump($officialTokens);
 			die();
 			}
 
@@ -113,8 +113,8 @@ function Find_Candidates($asset)
 			}
 		  else
 			{
-			echo "<br />";
-			echo "<br /> fail $thing does not work " . $the_data["circulation"] . " and " . $testing["circulation"] . "<br /> Locked state is : " . $the_data["locked"] . "<br />";
+			//echo "<br />";
+			//echo "<br /> fail $thing does not work " . $the_data["circulation"] . " and " . $testing["circulation"] . "<br /> Locked state is : " . $the_data["locked"] . "<br />";
 			}
 		}
 

@@ -32,10 +32,9 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 		if ($votePercent >= (100 / ($endBlock / $blocksApart))) {
 			$vote = Extract_Vote($voteAddress);
 			$token = Extract_Token($voteAddress);
-			echo "here vote address looks like this : $voteAddress";
 			//burn_address($voteAddress);
 				echo "<br> vote: $vote";
-				echo "<br> token: $token does it still have that A?";
+				echo "<br> token: $token";
 				$voteCheck = json_decode(file_get_contents($assetDetail . $vote) , true) ["data"];
 				//var_dump($voteCheck);
 				$tokenCheck = json_decode(file_get_contents($assetDetail . $token) , true) ["data"];
@@ -44,8 +43,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 						{
 				echo "<br /> Asset check returned null <br />";
 				//$officialTokens;
-				$prepare = Burn_Prep($token,$vote);
-				echo "this is prepare : $prepare";
+				//$prepare = Burn_Prep($token,$vote);
 				} elseif (Burn_Prep($token,$vote) != $voteAddress){
 						echo "here is the checksum vs the vote address " .Burn_Prep($token,$vote). " & ". $voteAddress;
 						echo "checksum does not match for $token!";

@@ -24,24 +24,21 @@ $startBlock = (340000); //starting block reference. Also in voting.php
 $endBlock = ($checkBlock - $startBlock); //distance gone in blocks from starting point.
 $countBlock = floor($endBlock / $blocksApart);
 echo "<br /> </br.> iterations : $countBlock </br> ";
-
-if ($countBlock >= 1)
-	{
+if ($countBlock == 0)
+{
+	echo "<br />" . ($blocksApart - ($checkBlock - $startBlock)) . " Blocks Until Start ";
+	}
 	for ($x = 0; $x < $countBlock; ++$x)
 		{
 		$oldToken = $officialTokens;
 		$officialTokens = Catch_up($officialTokens,$x,$blocksApart, $startBlock);
 		if ($officialTokens == $oldToken) {
-		Burn_Tokens($officialTokens);
+		
 		$x = $countBlock;
 		}
 }
 		
-	}
-  else
-	{
-	echo "<br />" . ($blocksApart - ($checkBlock - $startBlock)) . " Blocks Until Start ";
-	}
+echo Burn_Tokens($officialTokens);
 
 echo "<br /> Official Token : " . $officialTokens["Token"];
 echo "<br /> Next Vote Token : " . $officialTokens['Vote'];

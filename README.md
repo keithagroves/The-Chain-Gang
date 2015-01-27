@@ -3,8 +3,8 @@
 Use counterparty tokens as placeholders in order to enable multiple issuers.
 ----------------------------------------------------------------------------
 
-#Joining The Chain Gang (BETA)
- In order to join the chain gang **you must first know what the current Asset is**. You can find this by running the program. You then: 
+#Joining The Chain Gang (BETA) note: these instructions assume you know how to use counterwallet.io
+ In order to join the chain gang **you first must know what the current token is**. You can find this by running the program. 
 
 * create an **alphabet asset**. The alphabet asset can be maximum of 6 characters long. You are required to issue 500 additional tokens to distribute to yourself or however you please. (this will cost 0.5 XCP)
 
