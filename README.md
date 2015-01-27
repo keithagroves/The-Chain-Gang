@@ -1,5 +1,5 @@
-# The-Chain-Gang
-
+# The-Chain-Gang <<<<<<< HEAD
+==========================
 Use counterparty tokens as placeholders in order to enable multiple issuers.
 
 
@@ -8,11 +8,11 @@ Use counterparty tokens as placeholders in order to enable multiple issuers.
 
 * create an **alphabet asset**. The alphabet asset can be maximum of 6 characters long. You are required to issue 500 additional tokens to distribute to yourself or however you please. (this will cost 0.5 XCP)
 
-<<<<<<< HEAD
+
 * create a **numeric asset** (e.g. A954280000000012345678). The numeric asset can be a **maximum** of 20 numbers long("A" followed by 20 numbers). The issuance must be equal to the amount of the current Chain Gang Asset in circulation. You are required to issue 500 additional tokens to distribute to yourself or however you please.
 
 * Send both assets to all holders of the current Chain Gang Token  you found by running the php and keep 500 of each for yourself.
-=======
+
 * create a **numeric asset** A95428xxxxxxxxxxxxx. The numeric asset **max** of 21 characters long("A" followed by 20 numbers). 
 Iddues an amount equal to the amount of the current Chain Gang Asset in circulation. You are allowed to issue 500 additional to distribute to yourself or however you please.
 
@@ -20,6 +20,6 @@ Iddues an amount equal to the amount of the current Chain Gang Asset in circulat
 
 
 * **Lock both assets**
->>>>>>> 9073da603707813031d153e1a58f7c77bd690127
+
 After these steps are complete the asset will be shown as a viable assets for anyone who runs the program and they will vote for you if they want. If you win the majority vote your asset will become the new official asset and be forever linked in the token chain
 
