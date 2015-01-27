@@ -1,4 +1,4 @@
-# The-Chain-Gang <<<<<<< HEAD
+# The-Chain-Gang
 ==========================
 Use counterparty tokens as placeholders in order to enable multiple issuers.
 
@@ -16,7 +16,7 @@ Use counterparty tokens as placeholders in order to enable multiple issuers.
 * create a **numeric asset** A95428xxxxxxxxxxxxx. The numeric asset **max** of 21 characters long("A" followed by 20 numbers). 
 Iddues an amount equal to the amount of the current Chain Gang Asset in circulation. You are allowed to issue 500 additional to distribute to yourself or however you please.
 
-* Send both assets to all holders of The Chain Gang Token you found above and keep 50 of each for yourself.
+* Send both assets to all holders of The Chain Gang Token you found above and keep 500 of each for yourself.
 
 
 * **Lock both assets**
