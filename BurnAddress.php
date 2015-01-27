@@ -3,7 +3,8 @@
 function burn_address ($Assets) {
 
 if (strlen($Assets) != 33) {
-	echo "error, Asset not correct length";
+	echo "error, Asset not correct length :";
+	echo strlen($Assets);
 	return null;
 	}
 
@@ -13,34 +14,34 @@ $base58_O = array(0,O);
 $OString = str_replace ($base58_O,"o",$Assets); //replace base58 unfriendly characters
 $newString= str_replace ("I","i",$OString);
 
-echo $newString;
+//echo $newString;
 
 $Some1 = bc_base58_decode ($newString);
 
 $Some2 = bc_dechex($Some1);
 
 $Text = "000"  . substr($Some2, 0,39);
-echo "<br> step 3 : $Text  ";
+//echo "<br> step 3 : $Text  ";
 $Some3 = hexStringToByteString($Text);
 
 
 
 $Some4 = hash("sha256",$Some3);
 
-echo "<br> step4 : $Some4";
+//echo "<br> step4 : $Some4";
 
 $Some5 =hash("sha256",hexStringToByteString($Some4));
 
-echo "<br> step 5 : $Some5 <br> ";
+//echo "<br> step 5 : $Some5 <br> ";
 
 $Some6 = substr($Some5,0,8);
 
 $Some7 = $Text.$Some6;
 
-echo "<br> step 6: $Some7</br>";
+//echo "<br> step 6: $Some7</br>";
 
 $Some8 ="1".bc_base58_encode(bc_hexdec($Some7));
-echo "New Valid Burn Address ".$Some8."<br><br>";
+//echo "New Valid Burn Address ".$Some8."<br><br>";
 
 return $Some8;
 }

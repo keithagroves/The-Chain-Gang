@@ -20,7 +20,7 @@ $officialTokens = array(
 "Vote" => "A11035732284319710000"
 );
 
-$startBlock = (340000 - 4000); //starting block reference. Also in voting.php
+$startBlock = (340000); //starting block reference. Also in voting.php
 $endBlock = ($checkBlock - $startBlock); //distance gone in blocks from starting point.
 $countBlock = floor($endBlock / $blocksApart);
 echo "<br /> </br.> iterations : $countBlock </br> ";
@@ -29,11 +29,9 @@ if ($countBlock >= 1)
 	{
 	for ($x = 0; $x < $countBlock; ++$x)
 		{
-		echo "<br> still works x = $x <br>";
 		$oldToken = $officialTokens;
-		$officialTokens = Catch_up($officialTokens,$x);
+		$officialTokens = Catch_up($officialTokens,$x,$blocksApart, $startBlock);
 		if ($officialTokens == $oldToken) {
-		echo "<br> same old ";
 		Burn_Tokens($officialTokens);
 		$x = $countBlock;
 		}

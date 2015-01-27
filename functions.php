@@ -1,7 +1,39 @@
 <?php
+function Burn_Tokens($officialTokens) {
+		$asset = $officialTokens["Token"]; //Original asset
+		$voteToken = $officialTokens["Vote"]; //Original Vote
+		echo "<br /> The Chain Gang Token: $asset </br>";
+		echo "<br /> Vote Token : $voteToken</br>";
+		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
+		var_dump($candidates);
+		$poll = [];
+		foreach($candidates as $newCan)
+			{ //creating burn addresses that contain Vote & Token Name.
+			$voteToken = $newCan["Vote"];
+			$canToken = $newCan["Token"];
+			if (isset($voteToken) && isset($canToken)) {
+			$validAddress = Burn_Prep($canToken, $voteToken);
+			
+			$poll[$validAddress] = array(
+				"Vote" => $voteToken,
+				"Token" => $canToken
+			);
+			}
+ else { unset($newcan);
+}}
+		var_dump($poll);
+		if ($candidates == NULL)
+			{
+			echo "here's where is dies";
+			var_dump($officialTokens);
+			die();
+			}
+
+		Vote($officialTokens, $poll);
+	}
 function Find_Candidates($asset)
 	{
-	$allowedIssuance = 50;
+	$allowedIssuance = 500;
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$asset_info = json_decode(file_get_contents($assetDetail . $asset) , true);
 	$chain_token_info = $asset_info['data'];
@@ -59,22 +91,25 @@ function Find_Candidates($asset)
 				echo "<br /> WARNING! THIS ASSET: ( $thing ) IS NOT LOCKED <br />";
 				}
 
-			if ($Vote == false)
+			else if ($Vote == false)
 				{
 				$viableAssets["$issuer"]["Token"] = $thing;
+				
+					echo "<br /> asset stats </br>";
+					foreach($new_data[0] as $key => $val)
+						{
+				echo "<br /> $key : $val ";
+				}
 				}
 			elseif ($Vote == true)
 				{
 				$viableAssets["$issuer"]["Vote"] = $thing;
+				
 				}
 
 			// var_dump($viableAssets);
 
-			echo "<br /> Candidate! </br>";
-			foreach($new_data[0] as $key => $val)
-				{
-				echo "<br /> $key : $val ";
-				}
+			
 			}
 		  else
 			{
@@ -84,43 +119,20 @@ function Find_Candidates($asset)
 		}
 
 	$tester = $viableAssets;
-	var_dump($tester);
+	//var_dump($tester);
 	return $tester;
 	};
 	
-function Burn_Tokens($officialTokens) {
-		$asset = $officialTokens["Token"]; //Original asset
-		$voteToken = $officialTokens["Vote"]; //Original Vote
-		echo "<br /> The Chain Gang Token: $asset </br>";
-		echo "<br /> Vote Token : $voteToken</br>";
-		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
-		var_dump($candidates);
-		$poll = [];
-		foreach($candidates as $newCan)
-			{ //creating burn addresses that contain Vote & Token Name.
-			$voteToken = $newCan["Vote"];
-			$canToken = $newCan["Token"];
-			echo "<br> vote length".strlen($voteToken). " </br>";
-			echo "<br> can length".strlen($canToken). " </br>";
-			
-			$Burn = "1".$canToken . $voteToken . "xxxxxxx";
-			echo "<br> sting length". strlen($Burn);
-			$validAddress = burn_address($Burn);
-			echo "<br /> $canToken Vote Address : $validAddress   ";
-			$poll[$validAddress] = array(
-				"Vote" => $voteToken,
-				"Token" => $canToken
-			);
-			}
-
-		var_dump($poll);
-		if ($candidates == NULL)
-			{
-			echo "here's where is dies";
-			var_dump($officialTokens);
-			die();
-			}
-
-		Vote($officialTokens, $poll);
+function Burn_Prep($token,$vote){
+		$voteNumber = substr($vote, 1);
+		echo $voteNumber;
+		$burn = "1".$token . $voteNumber . "xxxxx";
+		echo "<br> this is burn $burn";
+		while (strlen($burn) < 33) {
+			$burn = $burn."x";
+		}
+		$validAddress = burn_address($burn);
+		return $validAddress;
 	}
+
 ?>
