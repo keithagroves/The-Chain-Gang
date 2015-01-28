@@ -32,6 +32,7 @@ if ($countBlock == 0)
 		{
 		$oldToken = $officialTokens;
 		$officialTokens = Catch_up($officialTokens,$x,$blocksApart, $startBlock);
+		echo Catch_up($officialTokens,$x,$blocksApart, $startBlock);
 		if ($officialTokens == $oldToken) {
 		
 		$x = $countBlock;

@@ -4,6 +4,18 @@ function Burn_Tokens($officialTokens) {
 		$voteToken = $officialTokens["Vote"]; //Original Vote
 		echo "<br /> The Chain Gang Token: $asset </br>";
 		echo "<br /> Vote Token : $voteToken</br>";
+
+		echo " To become a candidate you must issue coins to  
+<br>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Chain Gang</title>
+</head>
+<body>
+ <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'>$asset</a> " ;
+echo " The holder of the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> will become the next Official Token";
+echo "</html> <br>";
 		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
 		//var_dump($candidates);
 		$poll = [];
