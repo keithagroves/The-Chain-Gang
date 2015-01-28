@@ -1,11 +1,7 @@
-# The-Chain-Gang
-<<<<<<< HEAD
-==========================
-=======
-
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Buskcoin/The-Chain-Gang?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# The-Chain-Gang
+=================
 
->>>>>>> b2e97bc44def0ccdd3b0c825ed0c8c54037b7b4c
 Use counterparty tokens as placeholders in order to enable multiple issuers.
 ----------------------------------------------------------------------------
 
