@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Chain Gang</title>
+</head>
+<body>
+	<h1> The Chain Gang</h1>
 <?php
 require_once ("./BurnAddress.php");
 require_once ("./voting.php");
@@ -17,7 +24,7 @@ echo "<br /> current block count : $checkBlock <br />";
 
 $officialTokens = array(
 "Token" => "TheChainGang",
-"Vote" => "A11035732284319710000"
+"Vote" => "A123456745345676454"
 );
 
 $startBlock = (340000); //starting block reference. Also in voting.php
@@ -26,7 +33,7 @@ $countBlock = floor($endBlock / $blocksApart);
 echo "<br /> </br.> iterations : $countBlock </br> ";
 if ($countBlock == 0)
 {
-	echo "<br />" . ($blocksApart - ($checkBlock - $startBlock)) . " Blocks Until Start ";
+	echo "<br />" . ($blocksApart - ($checkBlock - $startBlock)) . " Blocks Until Voting Starts ";
 	}
 	for ($x = 0; $x < $countBlock; ++$x)
 		{
@@ -46,3 +53,6 @@ echo "<br /> Next Vote Token : " . $officialTokens['Vote'];
 
 
 ?>
+
+</body>
+</html>

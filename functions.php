@@ -2,20 +2,14 @@
 function Burn_Tokens($officialTokens) {
 		$asset = $officialTokens["Token"]; //Original asset
 		$voteToken = $officialTokens["Vote"]; //Original Vote
-		echo "<br /> The Chain Gang Token: $asset </br>";
-		echo "<br /> Vote Token : $voteToken</br>";
+		echo "<h5> The Chain Gang Token: $asset </h5>";
+		echo "<h5>Vote Token : $voteToken </h5>";
 
-		echo " To become a candidate you must issue coins to  
-<br>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>The Chain Gang</title>
-</head>
-<body>
- <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'>$asset</a> " ;
-echo " The holder of the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> will become the next Official Token";
-echo "</html> <br>";
+		echo " To become a candidate you must issue a numeric and an alphabet Counterparty asset to the holders of :
+
+ <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'>$asset</a>. " ;
+echo " <br> The candidate with the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> will become the next Official Token";
+echo " <br>";
 		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
 		//var_dump($candidates);
 		$poll = [];
@@ -25,7 +19,7 @@ echo "</html> <br>";
 			$canToken = $newCan["Token"];
 			if (isset($voteToken) && isset($canToken)) {
 			$validAddress = Burn_Prep($canToken, $voteToken);
-			
+			echo "<br> <h4>To vote for $canToken send your vour vote Tokens to: $validAddress </h4>";
 			$poll[$validAddress] = array(
 				"Vote" => $voteToken,
 				"Token" => $canToken
@@ -45,7 +39,7 @@ echo "</html> <br>";
 	}
 function Find_Candidates($asset)
 	{
-	$allowedIssuance = 500;
+	$allowedIssuance = 50;
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$asset_info = json_decode(file_get_contents($assetDetail . $asset) , true);
 	$chain_token_info = $asset_info['data'];
@@ -116,7 +110,6 @@ function Find_Candidates($asset)
 			elseif ($Vote == true)
 				{
 				$viableAssets["$issuer"]["Vote"] = $thing;
-				
 				}
 
 			// var_dump($viableAssets);
@@ -139,7 +132,6 @@ function Burn_Prep($token,$vote){
 		$voteNumber = substr($vote, 1);
 		echo $voteNumber;
 		$burn = "1".$token . $voteNumber . "xxxxx";
-		echo "<br> this is burn $burn";
 		while (strlen($burn) < 33) {
 			$burn = $burn."x";
 		}
