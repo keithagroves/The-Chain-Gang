@@ -39,7 +39,7 @@ echo " <br>";
 	}
 function Find_Candidates($asset)
 	{
-	$allowedIssuance = 50;
+	$allowedIssuance = 500;
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$asset_info = json_decode(file_get_contents($assetDetail . $asset) , true);
 	$chain_token_info = $asset_info['data'];
