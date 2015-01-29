@@ -10,6 +10,8 @@ function Burn_Tokens($officialTokens) {
  <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'>$asset</a>. " ;
 echo " <br> The candidate with the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> will become the next Official Token";
 echo " <br>";
+echo "</div>";
+
 		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
 		//var_dump($candidates);
 		$poll = [];
@@ -37,9 +39,10 @@ echo " <br>";
 
 		Vote($officialTokens, $poll);
 	}
+	
 function Find_Candidates($asset)
 	{
-	$allowedIssuance = 500;
+	$allowedIssuance = 50;
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$asset_info = json_decode(file_get_contents($assetDetail . $asset) , true);
 	$chain_token_info = $asset_info['data'];
@@ -101,10 +104,10 @@ function Find_Candidates($asset)
 				{
 				$viableAssets["$issuer"]["Token"] = $thing;
 				
-					echo "<br /> asset stats </br>";
+					echo "<ul> asset stats ";
 					foreach($new_data[0] as $key => $val)
 						{
-				echo "<br /> $key : $val ";
+				echo "<li> $key : $val </li> ";
 				}
 				}
 			elseif ($Vote == true)
@@ -125,12 +128,12 @@ function Find_Candidates($asset)
 
 	$tester = $viableAssets;
 	//var_dump($tester);
+	echo "</ul>";
 	return $tester;
 	};
 	
 function Burn_Prep($token,$vote){
 		$voteNumber = substr($vote, 1);
-		echo $voteNumber;
 		$burn = "1".$token . $voteNumber . "xxxxx";
 		while (strlen($burn) < 33) {
 			$burn = $burn."x";

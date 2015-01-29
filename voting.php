@@ -80,21 +80,23 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 	for ($i = 0; $i < $countVoteArray; ++$i)
 		{
 		$votePercent = $voteResults[$i]["percentage"];
-		echo "<br /> Vote percent: $votePercent <br>";
+		
 		$voteAddress = $voteResults[$i]["address"];
-		echo "<br /> Vote Address: $voteAddress <br>";
+		
 		
 		if ($poll[$voteAddress] == null)
 			{
-			echo "<br> This address does not show up in the candidate search.";
+			echo "<br> Votes are not yet cast";
 			}
 		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)))
 			{
+			echo "<br /> $voteAddress has enough votes!<br>";
 			$officialTokens = $poll[$voteAddress];
 			return $officialTokens;
 			}
 		  else
 			{
+			echo "<br /> Vote percent: $votePercent <br>";
 			echo " Candidate does not have enough votes ";
 			}
 		

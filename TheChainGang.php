@@ -2,9 +2,11 @@
 <html>
 <head>
 	<title>The Chain Gang</title>
+	<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
 </head>
 <body>
 	<h1> The Chain Gang</h1>
+	<div>
 <?php
 require_once ("./BurnAddress.php");
 require_once ("./voting.php");
@@ -15,7 +17,7 @@ $blockCount = 'http://api.blockscan.com/api2?module=proxy&action=get_running_inf
 $blocksApart = 1008; //this makes the action perform every so many Bitcoin blocks. 144 = day, 1008 = week.
 echo "This will execute every $blocksApart Blocks</br>";
 $checkBlock = json_decode(file_get_contents($blockCount) , true) ["bitcoin_block_count"];
-echo "<br /> current block count : $checkBlock <br />";
+echo "<br /> Current block count : $checkBlock <br />";
 
 //$officialTokens = array("Token" => "TXooooo", "Vote" => "A4330178176633399300"); // Original Official Tokens
 
@@ -30,7 +32,7 @@ $officialTokens = array(
 $startBlock = (340000); //starting block reference. Also in voting.php
 $endBlock = ($checkBlock - $startBlock); //distance gone in blocks from starting point.
 $countBlock = floor($endBlock / $blocksApart);
-echo "<br /> </br.> iterations : $countBlock </br> ";
+//echo "<br /> </br.> iterations : $countBlock </br> ";
 if ($countBlock == 0)
 {
 	echo "<br />" . ($blocksApart - ($checkBlock - $startBlock)) . " Blocks Until Voting Starts ";
