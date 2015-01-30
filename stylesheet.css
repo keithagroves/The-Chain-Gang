@@ -20,7 +20,7 @@ div {
 	font-family: Garamond, serif;
 }
 h5 {
-border-radius: 22px;
+	border-radius: 22px;
 	border: 2px solid #6495ED;
 	background-color: #BCD2EE;
 	height: 19px;
@@ -36,6 +36,8 @@ a {
 	font-family: Verdana, sans-serif;
 }
 ul {
+	border-radius: 22px;
+	border: 2px solid #6495ED;
 	text-decoration: none;
 	color: solid green;
 	font-family: Verdana, sans-serif;

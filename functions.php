@@ -43,6 +43,7 @@ echo "</div>";
 function Find_Candidates($asset)
 	{
 	$allowedIssuance = 500;
+	$minIssuance = $allowedIssuance/100;
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$asset_info = json_decode(file_get_contents($assetDetail . $asset) , true);
 	$chain_token_info = $asset_info['data'];
@@ -93,22 +94,24 @@ function Find_Candidates($asset)
 			$Vote = false;
 			}
 
-		if ($testing["circulation"] + $allowedIssuance >= $circulation && $circulation > $testing["circulation"])
+		if ($testing["circulation"] + $allowedIssuance >= $circulation && $circulation >= $testing["circulation"] + $minIssuance )
 			{
 			if ($the_data["locked"] == "False")
 				{
-				echo "<br /> WARNING! THIS ASSET: ( $thing ) IS NOT LOCKED <br />";
+				//echo "<br /> WARNING! THIS ASSET: ( $thing ) IS NOT LOCKED <br />";
 				}
 
 			else if ($Vote == false)
 				{
 				$viableAssets["$issuer"]["Token"] = $thing;
-				
-					echo "<ul> asset stats ";
+				echo "<ul> asset stats ";
 					foreach($new_data[0] as $key => $val)
 						{
 				echo "<li> $key : $val </li> ";
+				
 				}
+				echo "</ul>";
+					
 				}
 			elseif ($Vote == true)
 				{
@@ -127,6 +130,19 @@ function Find_Candidates($asset)
 		}
 
 	$tester = $viableAssets;
+	foreach ($tester as $inner) {
+	echo "<ul> Pair";
+    //  Check type
+    if (is_array($inner)) {
+        //  Scan through inner loop
+        foreach ($inner as $key => $value) {
+           echo "<li> $key : $value </li> ";
+           
+        }
+    }
+}
+	
+					/**/
 	//var_dump($tester);
 	echo "</ul>";
 	return $tester;
