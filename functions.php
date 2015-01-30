@@ -2,8 +2,8 @@
 function Burn_Tokens($officialTokens) {
 		$asset = $officialTokens["Token"]; //Original asset
 		$voteToken = $officialTokens["Vote"]; //Original Vote
-		echo "<h5> The Chain Gang Token: $asset </h5>";
-		echo "<h5>Vote Token : $voteToken </h5>";
+		echo "<h5> The Chain Gang Token: <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'>$asset</a> </h5>";
+		echo "<h5>Vote Token : <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> </h5>";
 
 		echo " To become a candidate you must issue a numeric and an alphabet Counterparty asset to the holders of :
 
@@ -42,7 +42,7 @@ echo "</div>";
 	
 function Find_Candidates($asset)
 	{
-	$allowedIssuance = 50;
+	$allowedIssuance = 500;
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$asset_info = json_decode(file_get_contents($assetDetail . $asset) , true);
 	$chain_token_info = $asset_info['data'];
@@ -93,7 +93,7 @@ function Find_Candidates($asset)
 			$Vote = false;
 			}
 
-		if ($testing["circulation"] + $allowedIssuance == $circulation)
+		if ($testing["circulation"] + $allowedIssuance >= $circulation && $circulation > $testing["circulation"])
 			{
 			if ($the_data["locked"] == "False")
 				{

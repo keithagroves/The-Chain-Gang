@@ -17,18 +17,19 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 	$voteResults = json_decode(file_get_contents($assetHolders . $voteToken) , true) ["data"]; //gets a list of vote asset holders
 	$smartBlock = $startBlock + ($poll * $blocksApart); //starting block reference.
 	$endBlock = $checkBlock - $smartBlock; //distance gone in blocks from starting point.
-	echo "<Br>  Reference $smartBlock";
+	//echo "<Br>  Reference $smartBlock";
 	//var_dump($voteResults);
 	$voteEquation = (100/($endBlock / $blocksApart));
+	if ($poll == 1){
 	echo "<br> Percentage Vote Required ". round($voteEquation,2) . "%" ;
-	
+}
 	$countVoteArray = count($voteResults);
 	for ($i = 0; $i < $countVoteArray; ++$i)
 		{
 		$votePercent = $voteResults[$i]["percentage"];
-		echo "<br /> Vote Percent $votePercent";
+		//echo "<br /> Vote Percent $votePercent";
 		$voteAddress = $voteResults[$i]["address"];
-		echo "<br /> Vote Address $voteAddress";
+		//echo "<br /> Leading vote address: $voteAddress";
 		if ($votePercent >= (100 / ($endBlock / $blocksApart))) {
 			$vote = Extract_Vote($voteAddress);
 			$token = Extract_Token($voteAddress);
@@ -45,6 +46,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 				//$officialTokens;
 				//$prepare = Burn_Prep($token,$vote);
 				} elseif (Burn_Prep($token,$vote) != $voteAddress){
+					
 						echo "here is the checksum vs the vote address " .Burn_Prep($token,$vote). " & ". $voteAddress;
 						echo "checksum does not match for $token!";
 						
@@ -59,7 +61,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 				return $checkTokens;
 				}
 			} else{
-				echo "<br> Not enough votes <br>";
+				//echo "<br> Not enough votes <br>";
 			}
 		}
 		return $officialTokens;

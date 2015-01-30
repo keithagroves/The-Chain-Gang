@@ -37,14 +37,16 @@ if ($countBlock == 0)
 {
 	echo "<br />" . ($blocksApart - ($checkBlock - $startBlock)) . " Blocks Until Voting Starts ";
 	}
+	echo "<p>";
 	for ($x = 0; $x < $countBlock; ++$x)
 		{
 		$oldToken = $officialTokens;
 		$officialTokens = Catch_up($officialTokens,$x,$blocksApart, $startBlock);
-		echo Catch_up($officialTokens,$x,$blocksApart, $startBlock);
+		//echo Catch_up($officialTokens,$x,$blocksApart, $startBlock);
 		if ($officialTokens == $oldToken) {
 		
 		$x = $countBlock;
+		echo "</p>";
 		}
 }
 		
