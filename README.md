@@ -12,7 +12,7 @@ Use counterparty tokens as placeholders in order to enable multiple issuers.
 * create an **alphabet asset**. The alphabet asset can be maximum of 6 characters long. You can issue 5000 additional tokens to distribute to yourself or however you please. 
 
 
-* create a **numeric asset** (e.g. A954280000000012345678). The numeric asset can be a **maximum** of 20 numbers long("A" followed by 20 numbers). The issuance must be equal to the amount of the current Chain Gang Asset in circulation. You cab issue a maximum of 5000 additional tokens to distribute to yourself or however you please.
+* create a **numeric asset** (e.g. A954280000000012345678). The numeric asset can be a **maximum** of 20 numbers long("A" followed by 20 numbers). The issuance must be equal to the amount of the current Chain Gang Asset in circulation. You can issue a maximum of 5000 additional tokens to distribute to yourself or however you please.
 
 * Send both assets to all holders of the current Chain Gang Token  you found by running the php and keep 5000 of each for yourself.
 
