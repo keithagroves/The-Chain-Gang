@@ -20,9 +20,6 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 	//echo "<Br>  Reference $smartBlock";
 	//var_dump($voteResults);
 	$voteEquation = (100/($endBlock / $blocksApart));
-	if ($poll == 1){
-	echo "<br> Percentage Vote Required ". round($voteEquation,2) . "%" ;
-}
 	$countVoteArray = count($voteResults);
 	for ($i = 0; $i < $countVoteArray; ++$i)
 		{
@@ -42,6 +39,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 				//var_dump($tokenCheck);
 					if ($tokenCheck == null || $voteCheck == null)
 						{
+				echo "<br> Percentage Vote Required ". round($voteEquation,2) . "%" ;
 				//echo "<br /> Asset check returned null <br />";
 				//$officialTokens;
 				//$prepare = Burn_Prep($token,$vote);
@@ -61,6 +59,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 				return $checkTokens;
 				}
 			} else{
+				echo "<br> Percentage Vote Required ". round($voteEquation,2) . "%" ;
 				//echo "<br> Not enough votes <br>";
 			}
 		}
