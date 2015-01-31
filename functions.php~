@@ -42,7 +42,7 @@ echo "</div>";
 	
 function Find_Candidates($asset)
 	{
-	$allowedIssuance = 5000;
+	$allowedIssuance = 500;
 	$minIssuance = $allowedIssuance/100;
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$asset_info = json_decode(file_get_contents($assetDetail . $asset) , true);
