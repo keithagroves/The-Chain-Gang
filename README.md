@@ -12,7 +12,7 @@ Note: these instructions assume you know how to use counterwallet.io.
 
 3. Create a **numeric asset** (e.g. A954280000000012345678). The numeric asset can be a **maximum** of 20 numbers long ("A" followed by 20 numbers). The issuance must match the issuance of your alphabet asset.
 
-4. Send both assets to all holders of the **FOOBAR** and keep 5000 of each for yourself. This can be the most cumbersome part of the process, especially if there are more asset holders.
+4. Send both assets to all holders of the **FOOBAR** and keep 5000, or whatever additional amout you issued of each asset, for yourself. This can be the most cumbersome part of the process, especially if there are more asset holders.
 
 5. **Lock both assets**
 
