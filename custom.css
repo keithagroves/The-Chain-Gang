@@ -1,0 +1,15 @@
+#header {
+	margin: 0 auto;
+}
+
+.margin {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.offset {
+	width:70%;
+	margin:10px;
+	padding: 15px;
+	margin: 0 auto;
+}
