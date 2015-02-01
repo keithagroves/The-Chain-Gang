@@ -16,6 +16,6 @@ Note: these instructions assume you know how to use counterwallet.io.
 
 5. **Lock both assets**
 
-After these steps are complete the asset will be shown as a viable asset for anyone who runs the program or goes to www.hodl.info and they will vote for you if they want. If you win the majority vote your asset will become the new official asset, replacing **FOOBAR**, and be forever linked in the token chain.
+After these steps are complete the asset will be shown as a viable asset for anyone who runs the PHP or goes to www.hodl.info and they will vote for you if they want. If you win the majority vote your asset will become the new official asset, replacing **FOOBAR**, and be forever linked in the token chain.
 
 The numeric asset issued will be used as the next vote token.
