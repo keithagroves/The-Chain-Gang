@@ -2,11 +2,14 @@
 <html>
 <head>
 	<title>The Chain Gang</title>
-	<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+	<link type="text/css" rel="stylesheet" href="style.css"/>
+        <link type="text/css" rel="stylesheet" href="custom.css"/>
 </head>
 <body>
-	<h1> The Chain Gang</h1>
-	<div>
+	<div id="header" class="jumbotron offset">
+		<h1>The Chain Gang</h1>
+	</div>
+	<div class='jumbotron offset'>
 <?php
 require_once ("./BurnAddress.php");
 require_once ("./voting.php");
@@ -15,9 +18,9 @@ require_once ("./functions.php");
 $assetHolders = 'http://api.blockscan.com/api2?module=asset&action=holders&name='; //Holders of an asset
 $blockCount = 'http://api.blockscan.com/api2?module=proxy&action=get_running_info'; //Block info link.
 $blocksApart = 1008; //this makes the action perform every so many Bitcoin blocks. 144 = day, 1008 = week.
-echo "This will execute every $blocksApart Blocks</br>";
+echo "<h3>This will execute every <b>$blocksApart</b> Blocks</h3>";
 $checkBlock = json_decode(file_get_contents($blockCount) , true) ["bitcoin_block_count"];
-echo "<br /> Current block count : $checkBlock <br />";
+echo "<h3>Current block count :<b> $checkBlock </b></h3><h4>";
 
 //$officialTokens = array("Token" => "TXooooo", "Vote" => "A4330178176633399300"); // Original Official Tokens
 
