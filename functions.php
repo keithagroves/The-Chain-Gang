@@ -11,6 +11,7 @@ function Burn_Tokens($officialTokens) {
 echo " <br> The candidate with the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> will become the next Official Token";
 echo " <br>";
 echo "</div>";
+echo "<h3> Candidates: </h3>";
 
 		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
 		//var_dump($candidates);
