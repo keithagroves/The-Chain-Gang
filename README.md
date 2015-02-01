@@ -5,7 +5,7 @@ Use counterparty tokens as placeholders in order to enable multiple issuers.
 ###Joining The Chain Gang (warning: this will cost 0.5 XCP)
 Note: these instructions assume you know how to use counterwallet.io. 
 
-1. In order to join the chain gang **you first must know what the current official token is**. For the sake of ease, we’ll call it **FOOBAR**. You can find the current token by running the php locally or by simply going to www.hodl.info and checking where it says Official Token at the bottom.
+1. In order to join The Chain Gang **you first must know what the current official token is**. For the sake of ease, we’ll call it **FOOBAR**. You can find the current token by running the php locally or by simply going to www.hodl.info and checking where it says Official Token at the bottom.
 
 2. Create an **alphabet asset**. The alphabet asset can be maximum of 6 characters long. You must issue an amount more than the **FOOBAR** in circulation. You can issue a maximum of 5000 additional tokens to distribute to yourself or however you please. You must issue at least 50 extra tokens.
 
