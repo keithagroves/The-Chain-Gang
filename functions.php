@@ -5,7 +5,7 @@ function Burn_Tokens($officialTokens) {
 		echo "<h4> The Chain Gang Token: <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'><b>$asset</b></a> </h4>";
 		echo "<h4>Vote Token : <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'><b>$voteToken</b></a> </h4>";
 
-		echo "<h4>To become a candidate you must issue a numeric and an alphabet Counterparty asset to the holders of :<a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'><b> $asset</b></h4></a>" ;
+		echo "<h4>Candidates must issue a numeric and an alphabet asset to the holders of :<a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'><b> $asset</b></h4></a>" ;
 echo " <h4>The candidate with the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'><b>$voteToken</b></a> will become the next Official Token<h4>";
 echo " <br>";
 echo "</div><div class='jumbotron offset'><b>";
@@ -20,7 +20,7 @@ echo "<h3> Candidates: </h3>";
 			$canToken = $newCan["Token"];
 			if (isset($voteToken) && isset($canToken)) {
 			$validAddress = Burn_Prep($canToken, $voteToken);
-			echo "<br> <h4>To vote for $canToken send your vour vote Tokens to: $validAddress </h4>";
+			echo "<br> <h4>To vote for $canToken send your vour vote Tokens to: <a>$validAddress </a> </h4>";
 			$poll[$validAddress] = array(
 				"Vote" => $voteToken,
 				"Token" => $canToken
@@ -103,7 +103,7 @@ function Find_Candidates($asset)
 			else if ($Vote == false)
 				{
 				$viableAssets["$issuer"]["Token"] = $thing;
-				echo "<ul> asset stats ";
+				echo "<h4>Asset Stats</h4> <ul>";
 					foreach($new_data[0] as $key => $val)
 						{
 				echo "<li> $key : $val </li> ";

@@ -39,7 +39,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 				//var_dump($tokenCheck);
 					if ($tokenCheck == null || $voteCheck == null)
 						{
-				echo "<br> Percentage Vote Required ". round($voteEquation,2) . "%" ;
+				//echo "<h4> Percentage Vote Required". " <a> ". round($voteEquation,2) . "% </a> </h4>" ;
 				//echo "<br /> Asset check returned null <br />";
 				//$officialTokens;
 				//$prepare = Burn_Prep($token,$vote);
@@ -59,7 +59,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 				return $checkTokens;
 				}
 			} else{
-				echo "Percentage Vote Required: <b>". round($voteEquation,2) . "% </b></h4>" ;
+				echo "<h4> Percentage Vote Required". " <a> ". round($voteEquation,2) . "% </a> </h4>" ;
 				//echo "<br> Not enough votes <br>";
 			}
 		}
