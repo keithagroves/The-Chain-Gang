@@ -2,15 +2,13 @@
 function Burn_Tokens($officialTokens) {
 		$asset = $officialTokens["Token"]; //Original asset
 		$voteToken = $officialTokens["Vote"]; //Original Vote
-		echo "<h5> The Chain Gang Token: <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'>$asset</a> </h5>";
-		echo "<h5>Vote Token : <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> </h5>";
+		echo "<h4> The Chain Gang Token: <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'><b>$asset</b></a> </h4>";
+		echo "<h4>Vote Token : <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'><b>$voteToken</b></a> </h4>";
 
-		echo " To become a candidate you must issue a numeric and an alphabet Counterparty asset to the holders of :
-
- <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'>$asset</a>. " ;
-echo " <br> The candidate with the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'>$voteToken</a> will become the next Official Token";
+		echo "<h4>To become a candidate you must issue a numeric and an alphabet Counterparty asset to the holders of :<a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'><b> $asset</b></h4></a>" ;
+echo " <h4>The candidate with the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'><b>$voteToken</b></a> will become the next Official Token<h4>";
 echo " <br>";
-echo "</div>";
+echo "</div><div class='jumbotron offset'><b>";
 echo "<h3> Candidates: </h3>";
 
 		$candidates = Find_Candidates($asset); //Search through assets for match that is distributed to all asset holders and returns an array.
@@ -33,7 +31,7 @@ echo "<h3> Candidates: </h3>";
 		//var_dump($poll);
 		if ($candidates == NULL)
 			{
-			echo "No viable Candidates! :(";
+			echo "<div class='margin offset'><span class='label label-warning center'>No Valid Candidates! :(</span></div>";
 			//var_dump($officialTokens);
 			die();
 			}

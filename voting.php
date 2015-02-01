@@ -59,7 +59,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 				return $checkTokens;
 				}
 			} else{
-				echo "<br> Percentage Vote Required ". round($voteEquation,2) . "%" ;
+				echo "Percentage Vote Required: <b>". round($voteEquation,2) . "% </b></h4>" ;
 				//echo "<br> Not enough votes <br>";
 			}
 		}
@@ -87,17 +87,17 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 		
 		if ($poll[$voteAddress] == null)
 			{
-			echo "<br> Votes are not yet cast";
+			echo "<h4>Votes are not yet cast<h4>";
 			}
 		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)))
 			{
-			echo "<br /> $voteAddress has enough votes!<br>";
+			echo "<h4>  <b>$voteAddress</b> has enough votes!<h4>";
 			$officialTokens = $poll[$voteAddress];
 			return $officialTokens;
 			}
 		  else
 			{
-			echo "<br /> Vote percent: $votePercent <br>";
+			echo "<h4> Vote percent: <b>$votePercent</b> </h4>";
 			echo " Candidate does not have enough votes ";
 			}
 		
