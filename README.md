@@ -10,7 +10,7 @@ Note: these instructions assume you know how to use counterwallet.io.
 2. Create an **alphabet asset**. The alphabet asset can be maximum of 6 characters long. You must issue an amount greater than the **FOOBAR** in circulation. You can issue a maximum of 5000 additional tokens to distribute to yourself or however you please. You must issue at least 50 extra tokens.
 
 
-3. Create a **numeric asset** (e.g. A954280000000012345678). The numeric asset can be a **maximum** of 20 numbers long ("A" followed by 20 numbers). The issuance must match the issuance of your alphabet asset.
+3. Create a **numeric asset** (e.g. A954280000000012345678). The numeric asset can be a **maximum** of 20 numbers long ("A" followed by 20 numbers). The issuance must match the issuance of your alphabet asset and be issued from the same address.
 
 4. Send both assets to all holders of the **FOOBAR** and keep 5000, or whatever additional amout you issued of each asset, for yourself. This can be the most cumbersome part of the process, especially if there are more asset holders.
 
