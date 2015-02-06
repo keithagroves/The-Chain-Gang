@@ -73,7 +73,7 @@ function Find_Candidates($asset)
 	$c = array_count_values($store);
 	$var = array_keys($c, $array_length_of_chain_token);
 
-	// echo var_dump($var);
+	//echo var_dump($var);
 
 	$viableAssets = Array();
 	foreach($var as $thing)
@@ -130,6 +130,7 @@ function Find_Candidates($asset)
 
 	$tester = $viableAssets;
 	foreach ($tester as $inner) {
+	
 	echo "<ul> Pair";
     //  Check type
     if (is_array($inner)) {
@@ -137,8 +138,10 @@ function Find_Candidates($asset)
         foreach ($inner as $key => $value) {
            echo "<li> $key : $value </li> ";
            
+           
         }
     }
+    echo "</ul>";
 }
 	
 					/**/

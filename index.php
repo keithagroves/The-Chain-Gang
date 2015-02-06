@@ -18,7 +18,6 @@ require_once ("./functions.php");
 $assetHolders = 'http://api.blockscan.com/api2?module=asset&action=holders&name='; //Holders of an asset
 $blockCount = 'http://api.blockscan.com/api2?module=proxy&action=get_running_info'; //Block info link.
 $blocksApart = 1008; //this makes the action perform every so many Bitcoin blocks. 144 = day, 1008 = week.
-echo "<h3>This will execute every <b>$blocksApart</b> Blocks</h3>";
 $checkBlock = json_decode(file_get_contents($blockCount) , true) ["bitcoin_block_count"];
 echo "<h3>Current block count :<b> $checkBlock </b></h3><h4>";
 
@@ -47,7 +46,13 @@ if ($countBlock == 0)
 		$officialTokens = Catch_up($officialTokens,$x,$blocksApart, $startBlock);
 		//echo Catch_up($officialTokens,$x,$blocksApart, $startBlock);
 		if ($officialTokens == $oldToken) {
-		
+		$voteGap = $x * $blocksApart - ($blocksApart * $endBlock / $blocksApart) + $blocksApart;
+		if ($voteGap > 0) {
+			echo "<h3> Next vote in <b>". $voteGap ."</b> Blocks</h3>";
+		}
+		else {
+			echo "Voting in progress";
+		}
 		$x = $countBlock;
 		echo "</p>";
 		}
