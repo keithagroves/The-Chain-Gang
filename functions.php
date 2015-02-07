@@ -8,6 +8,7 @@ function Burn_Tokens($officialTokens) {
 		echo "<h4>Candidates must issue a numeric and an alphabet asset to the holders of :<a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$asset'><b> $asset</b></h4></a>" ;
 echo " <h4>The candidate with the most <a href='http://api.blockscan.com/api2?module=asset&action=holders&name=$voteToken'><b>$voteToken</b></a> will become the next Official Token<h4>";
 echo " <br>";
+echo " Follow the instructions on <a href='https://github.com/Buskcoin/The-Chain-Gang'><b>Github</b></a> to join. ";
 echo "</div><div class='jumbotron offset'><b>";
 echo "<h3> Candidates: </h3>";
 
