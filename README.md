@@ -11,14 +11,14 @@ Uses counterparty tokens as placeholders in order to enable decentralized asset 
 <li> Counterparty will charge you 0.5 XCP to create a new asset. </li>
 </ul> 
 </div>
-1. To join The Chain Gang **you must first obtain the name of the current Official Token**. This can be found at the bottom of www.hodl.info or by running the PHP code locally on your computer. For the sake of this tutorial, we’ll call it **FOOBAR**. 
+1. To join The Chain Gang **you must first obtain the name of the current Official Token**. This can be found at the bottom of www.hodl.info or by running the PHP code locally on your computer. For the sake of this tutorial, we’ll call it **XYZABC**. 
 
-2. Access your Counterparty wallet and create an **alphabet asset**. The alphabet asset can be any name you choose and a maximum of 6 characters long. You must issue an amount greater than the **FOOBAR** in circulation. You can issue a maximum of 5000 additional tokens to distribute to yourself or however you please. You must issue at least 50 extra tokens.
+2. Access your Counterparty wallet and create an **alphabet asset**. The alphabet asset can be any name you choose and a maximum of 6 characters long. You must issue an amount greater than the **XYZABC** in circulation. You can issue a maximum of 5000 additional tokens to distribute to yourself or however you please. You must issue at least 50 extra tokens.
 
 
 3. Create a **numeric asset** (e.g. A954280000000012345678). The numeric asset can be a **maximum** of 20 numbers long ("A" followed by 20 numbers). The issuance must match the issuance of your alphabet asset and be issued from the same address. The numeric asset will be used as the next vote token.
 
-4. Send both assets (Alphabet and Numeric) to all holders of the current Official Token (e.g., FOOBAR). This can be the most cumbersome part of the process, especially when the number of asset holders increases. Make sure to set aside the tokens that you had allocated for personal/private distribution.
+4. Send both assets (Alphabet and Numeric) to all holders of the current Official Token (e.g., XYZABC). This can be the most cumbersome part of the process, especially when the number of asset holders increases. Make sure to set aside the tokens that you had allocated for personal/private distribution.
 
 5. **Lock both assets**
 
