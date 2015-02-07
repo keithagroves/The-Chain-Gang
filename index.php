@@ -57,9 +57,10 @@ if ($countBlock == 0)
 		echo "</p>";
 		}
 }
-		
-echo Burn_Tokens($officialTokens);
-
+$officialTokens = Burn_Tokens($officialTokens);
+if ($officialTokens === null) {
+$officialTokens = $oldToken;
+}
 echo "<br /> Official Token : " . $officialTokens["Token"];
 echo "<br /> Next Vote Token : " . $officialTokens['Vote'];
 

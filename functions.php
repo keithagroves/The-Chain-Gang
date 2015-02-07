@@ -36,7 +36,8 @@ echo "<h3> Candidates: </h3>";
 			die();
 			}
 
-		Vote($officialTokens, $poll);
+		$officialTokens = Vote($officialTokens, $poll);
+		return $officialTokens;
 	}
 	
 function Find_Candidates($asset)

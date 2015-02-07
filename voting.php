@@ -24,10 +24,11 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 	for ($i = 0; $i < $countVoteArray; ++$i)
 		{
 		$votePercent = $voteResults[$i]["percentage"];
+		$voteBalance = $voteResults[$i]["balance"];
 		//echo "<br /> Vote Percent $votePercent";
 		$voteAddress = $voteResults[$i]["address"];
 		//echo "<br /> Leading vote address: $voteAddress";
-		if ($votePercent >= (100 / ($endBlock / $blocksApart))) {
+		if ($votePercent >= (100 / ($endBlock / $blocksApart)) && $voteBalance > 0) {
 			$vote = Extract_Vote($voteAddress);
 			$token = Extract_Token($voteAddress);
 			//burn_address($voteAddress);
@@ -55,14 +56,15 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 					"Token" => $token,
 					"Vote" => $vote
 				);
-				var_dump($checkTokens);
+				//var_dump($checkTokens);
 				return $checkTokens;
 				}
 			} else{
-				echo "<h4> Percentage Vote Required". " <a> ". round($voteEquation,2) . "% </a> </h4>" ;
+				
 				//echo "<br> Not enough votes <br>";
 			}
 		}
+		echo "<h4> Issuance ". ($poll + 1) .": Percentage Vote Required". " <a> ". round($voteEquation,2) . "% </a> </h4>" ;
 		return $officialTokens;
 		}
 		
@@ -81,23 +83,25 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 	for ($i = 0; $i < $countVoteArray; ++$i)
 		{
 		$votePercent = $voteResults[$i]["percentage"];
-		
 		$voteAddress = $voteResults[$i]["address"];
+		$voteBalance = $voteResults[$i]["balance"];
 		
 		
 		if ($poll[$voteAddress] == null)
 			{
 			echo "<h4>Votes are not yet cast<h4>";
 			}
-		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)))
+		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)) && $voteBalance > 0)
 			{
 			echo "<h4>  <b>$voteAddress</b> has enough votes!<h4>";
+			//echo "<h4> Vote percent: <b>$votePercent</b> </h4>";
 			$officialTokens = $poll[$voteAddress];
+			//var_dump($officialTokens);
 			return $officialTokens;
+			
 			}
 		  else
 			{
-			echo "<h4> Vote percent: <b>$votePercent</b> </h4>";
 			echo " Candidate does not have enough votes ";
 			}
 		
@@ -106,7 +110,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 
 function Extract_Vote ($voteAddress) 
 {
-$voteAddress = substr($voteAddress,1,25);
+$voteAddress = substr($voteAddress,1,26);
 $vote = strpbrk($voteAddress, 0123456789);
 $vote = "A". str_replace("o", 0, $vote);
 $vote = "A".preg_replace("/[^0-9,.]/", "", $vote);
