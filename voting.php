@@ -28,7 +28,8 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 		//echo "<br /> Vote Percent $votePercent";
 		$voteAddress = $voteResults[$i]["address"];
 		//echo "<br /> Leading vote address: $voteAddress";
-		if ($votePercent >= (100 / ($endBlock / $blocksApart)) && $voteBalance > 0) {
+		if ($votePercent >= (100 / ($endBlock / $blocksApart))// && $voteBalance > 0
+		) {
 			$vote = Extract_Vote($voteAddress);
 			$token = Extract_Token($voteAddress);
 			//burn_address($voteAddress);
@@ -91,7 +92,8 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 			{
 			echo "<h4>Votes are not yet cast<h4>";
 			}
-		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)) && $voteBalance > 0)
+		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)) //&& $voteBalance > 0
+		)
 			{
 			echo "<h4>  <b>$voteAddress</b> has enough votes!<h4>";
 			//echo "<h4> Vote percent: <b>$votePercent</b> </h4>";
