@@ -7,9 +7,8 @@ Uses counterparty tokens as placeholders in order to enable decentralized asset 
 #####Please consider the following:
 <div>
 <ul>
-<li> It is important to understand Counterwallet's asset features prior to these instructions. Please refer to Counterparty support for more information.</li>
+<li> It is important to understand Counterwallet's asset features prior to these instructions.</li>
 <li> Counterparty will charge you 0.5 XCP to create a new asset. </li>
-<li> The address that you choose for asset creation must contain at least 0.5 XCP before you begin.</li>
 </ul> 
 </div>
 1. To join The Chain Gang **you must first obtain the name of the current Official Token**. This can be found at the bottom of www.hodl.info or by running the PHP code locally on your computer. For the sake of this tutorial, we’ll call it **FOOBAR**. 
@@ -23,4 +22,4 @@ Uses counterparty tokens as placeholders in order to enable decentralized asset 
 
 5. **Lock both assets**
 
-After these 5 steps are complete your asset will be active and publicly visible. Anyone who wishes to view your asset and voting address may do so, either by running the PHP code locally or by visiting www.hodl.info. If your asset wins the majority vote, it will become the new Official Asset and it will forever be linked in the token chain.
+After these 5 steps are completed, your asset will be active and publicly visible. Anyone who wishes to view your asset and voting address may do so, either by running the PHP code locally or by visiting www.hodl.info. The vote address is a burn address that is generated to contain the names of your assets. If your asset wins the majority vote, it will become the new Official Asset and and your numeric asset will become the next vote token.
