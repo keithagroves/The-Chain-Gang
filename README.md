@@ -22,4 +22,4 @@ Uses counterparty tokens as placeholders in order to enable decentralized asset 
 
 5. **Lock both assets**
 
-After these 5 steps are complete your asset will be active and publicly visible. Anyone who wishes to view your asset and voting address may do so, either by running the PHP code locally or by visiting www.hodl.info. If your asset wins the majority vote, it will become the new Official Asset and it will forever be linked in the token chain.
+After these 5 steps are completed, your asset will be active and publicly visible. Anyone who wishes to view your asset and voting address may do so, either by running the PHP code locally or by visiting www.hodl.info. The vote address is a burn address that is generated to contain the names of your assets. If your asset wins the majority vote, it will become the new Official Asset and and your numeric asset will become the next vote token.
