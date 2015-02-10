@@ -79,7 +79,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 	$voteResults = json_decode(file_get_contents($assetHolders . $voteToken) , true) ["data"]; //gets a list of vote asset holders
 
 	//var_dump($voteResults);
-
+	$noShows = 0;
 	$countVoteArray = count($voteResults);
 	for ($i = 0; $i < $countVoteArray; ++$i)
 		{
@@ -90,7 +90,8 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 		
 		if ($poll[$voteAddress] == null)
 			{
-			echo "<h4>Votes are not yet cast<h4>";
+			$noShows = $noShows + $votePercent;
+			
 			}
 		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)) //&& $voteBalance > 0
 		)
@@ -108,6 +109,7 @@ function Catch_up($officialTokens, $poll, $blocksApart,$startBlock)
 			}
 		
 }
+echo "<a href='$assetHolders".$voteToken."'><b>$noShows</b>"."% </a> of vote holders have not yet voted.<br>"; 
 }
 
 function Extract_Vote ($voteAddress) 
