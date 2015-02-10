@@ -21,7 +21,7 @@ echo "<h3> Candidates: </h3>";
 			$canToken = $newCan["Token"];
 			if (isset($voteToken) && isset($canToken)) {
 			$validAddress = Burn_Prep($canToken, $voteToken);
-			echo "<br> <h4>To vote for $canToken send your vour vote Tokens to: <a>$validAddress </a> </h4>";
+			echo "<br> <h4>To vote for $canToken send your vote Tokens to: <a>$validAddress </a> </h4>";
 			$poll[$validAddress] = array(
 				"Vote" => $voteToken,
 				"Token" => $canToken
