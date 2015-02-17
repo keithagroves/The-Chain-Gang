@@ -52,7 +52,7 @@ for ($x = 0; $x < $countBlock; ++$x)
 	$voteEquation = (100 / ($blockStat / $blocksApart));
 	$voteToken = $officialTokens["Vote"];
 	$voteResults = json_decode(file_get_contents($assetHolders . $voteToken) , true) ["data"]; //gets a list of vote asset holders
-	$officialTokens = V_count ($voteResults, $voteEquation, $officialTokens);
+	$officialTokens = Sync ($voteResults, $voteEquation, $officialTokens);
 
 	
 
@@ -86,7 +86,7 @@ echo "<br /> Next Vote Token : " . $officialTokens['Vote'];
 
 	
 
-function V_count ($voteResults, $voteEquation, $officialTokens)
+function Sync($voteResults, $voteEquation, $officialTokens)
 {
 	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 	$countVoteArray = count($voteResults);

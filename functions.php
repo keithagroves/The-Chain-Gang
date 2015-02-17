@@ -1,5 +1,6 @@
 <?php
 require_once ("./index.php");
+
 function Burn_Tokens($officialTokens, $voteEquation)
 	{
 	$asset = $officialTokens["Token"]; //Original asset
@@ -46,11 +47,10 @@ function Burn_Tokens($officialTokens, $voteEquation)
 
 		die();
 		}
+
 	$officialTokens = Vote($officialTokens, $poll, $voteEquation);
 	return $officialTokens;
 	}
-	
-
 
 function Find_Candidates($asset)
 	{
@@ -118,58 +118,50 @@ function Find_Candidates($asset)
 			if ($Vote == false)
 				{
 				$viableAssets["$issuer"]["Token"] = $thing;
-				if(isset($viableAssets["$issuer"]["Vote"]))
-				{	
-					Pairs($viableAssets["$issuer"]);
-				
-				echo "<h4>Asset Stats</h4> <ul>";
-				foreach($new_data[0] as $key => $val)
+				if (isset($viableAssets["$issuer"]["Vote"]))
 					{
-					echo "<li> $key : $val </li> ";
-					}
+					Pairs($viableAssets["$issuer"]);
+					echo "<h4>Asset Stats</h4> <ul>";
+					foreach($new_data[0] as $key => $val)
+						{
+						echo "<li> $key : $val </li> ";
+						}
 
-				echo "</ul>";
-			}
+					echo "</ul>";
+					}
 				}
 			elseif ($Vote == true)
 				{
 				$viableAssets["$issuer"]["Vote"] = $thing;
-				if(isset($viableAssets["$issuer"]["Token"]))
-				{
-					Pairs($viableAssets["$issuer"]);
-				
-				echo "<h4>Asset Stats</h4> <ul>";
-				foreach($new_data[0] as $key => $val)
+				if (isset($viableAssets["$issuer"]["Token"]))
 					{
-					echo "<li> $key : $val </li> ";
+					Pairs($viableAssets["$issuer"]);
+					echo "<h4>Asset Stats</h4> <ul>";
+					foreach($new_data[0] as $key => $val)
+						{
+						echo "<li> $key : $val </li> ";
+						}
+
+					echo "</ul>";
 					}
-
-				echo "</ul>";
 				}
-				}
-
 			}
 		}
 
-	
-	
 	return $viableAssets;
 	};
+
 function Pairs($sets)
 	{
-		
-		echo "<ul> Pair";
-		//  Check type
+	echo "<ul> Pair";
 
-		
+	//  Check type
+	//  Scan through inner loop
 
-			//  Scan through inner loop
-
-			foreach($sets as $key => $value)
-				{
-				echo "<li> $key : $value </li> ";
-				}
-			
+	foreach($sets as $key => $value)
+		{
+		echo "<li> $key : $value </li> ";
+		}
 
 	echo "</ul>";
 	}
@@ -186,7 +178,6 @@ function Burn_Prep($token, $vote)
 	$validAddress = burn_address($burn);
 	return $validAddress;
 	}
-
 
 function Extract_Vote($voteAddress)
 	{
@@ -214,4 +205,5 @@ function my_offset($text)
 
 	return strlen($text);
 	}
+
 ?>
