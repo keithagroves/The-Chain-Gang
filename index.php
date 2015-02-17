@@ -13,8 +13,6 @@
 <?php
 require_once ("./BurnAddress.php");
 
-require_once ("./voting.php");
-
 require_once ("./functions.php");
 $assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
 $assetHolders = 'http://api.blockscan.com/api2?module=asset&action=holders&name='; //Holders of an asset
@@ -47,45 +45,14 @@ echo "<p>";
 
 for ($x = 0; $x < $countBlock; ++$x)
 	{
-	$oldToken = $officialTokens;
-	$voteToken = $officialTokens["Vote"];
-	$voteResults = json_decode(file_get_contents($assetHolders . $voteToken) , true) ["data"]; //gets a list of vote asset holders
 	$poll = $x;
+	$oldToken = $officialTokens;
 	$smartBlock = $startBlock + ($poll * $blocksApart); //starting block reference.
 	$blockStat = $checkBlock - $smartBlock; //distance gone in blocks from starting point.
-
 	$voteEquation = (100 / ($blockStat / $blocksApart));
-	$countVoteArray = count($voteResults);
-	for ($i = 0; $i < $countVoteArray; ++$i)
-		{
-		$votePercent = $voteResults[$i]["percentage"];
-		$voteBalance = $voteResults[$i]["balance"];
-		$voteAddress = $voteResults[$i]["address"];
-
-		if ($votePercent >= (100 / ($blockStat / $blocksApart)) // && $voteBalance > 0
-		)
-			{
-			$vote = Extract_Vote($voteAddress);
-			$token = Extract_Token($voteAddress);
-			$voteCheck = json_decode(file_get_contents($assetDetail . $vote) , true) ["data"];
-			$tokenCheck = json_decode(file_get_contents($assetDetail . $token) , true) ["data"];
-			if ($tokenCheck == null || $voteCheck == null)
-				{
-
-				}
-			elseif (Burn_Prep($token, $vote) != $voteAddress)
-				{
-				echo "checksum does not match for $token!";
-				}
-			  else
-				{
-				$officialTokens = array(
-					"Token" => $token,
-					"Vote" => $vote
-				);
-				}
-			}
-		}
+	$voteToken = $officialTokens["Vote"];
+	$voteResults = json_decode(file_get_contents($assetHolders . $voteToken) , true) ["data"]; //gets a list of vote asset holders
+	$officialTokens = V_count ($voteResults, $voteEquation, $officialTokens);
 
 	
 
@@ -107,7 +74,7 @@ for ($x = 0; $x < $countBlock; ++$x)
 		}
 	}
 
-$officialTokens = Burn_Tokens($officialTokens);
+$officialTokens = Burn_Tokens($officialTokens,$voteEquation);
 
 if ($officialTokens === null)
 	{
@@ -119,9 +86,84 @@ echo "<br /> Next Vote Token : " . $officialTokens['Vote'];
 
 	
 
+function V_count ($voteResults, $voteEquation, $officialTokens)
+{
+	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
+	$countVoteArray = count($voteResults);
+	for ($i = 0; $i < $countVoteArray; ++$i)
+		{
+		$votePercent = $voteResults[$i]["percentage"];
+		$voteBalance = $voteResults[$i]["balance"];
+		$voteAddress = $voteResults[$i]["address"];
 
-		
+		if ($votePercent >= $voteEquation) // && $voteBalance > 0
+			{
+			$vote = Extract_Vote($voteAddress);
+			$token = Extract_Token($voteAddress);
+			$voteCheck = json_decode(file_get_contents($assetDetail . $vote) , true) ["data"];
+			$tokenCheck = json_decode(file_get_contents($assetDetail . $token) , true) ["data"];
+			if ($tokenCheck == null || $voteCheck == null)
+				{
+				}
+			elseif (Burn_Prep($token, $vote) != $voteAddress)
+				{
+				echo "checksum does not match for $token!";
+				}
+			  else
+				{
+				$officialTokens = array(
+					"Token" => $token,
+					"Vote" => $vote
+				);
+				return $officialTokens;
+				}
+			}
+			else{
+				}
+			}
+			return $officialTokens;
+	}
 	
+	
+		function Vote($officialTokens, $poll, $voteEquation)
+	{ // Vote Counter
+	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
+	$assetHolders = 'http://api.blockscan.com/api2?module=asset&action=holders&name=';
+	$voteToken = $officialTokens["Vote"];
+	$voteResults = json_decode(file_get_contents($assetHolders . $voteToken) , true) ["data"]; //gets a list of vote asset holders
+	// var_dump($voteResults);
+	$noShows = 0;
+	$countVoteArray = count($voteResults);
+	for ($i = 0; $i < $countVoteArray; ++$i)
+		{
+		$votePercent = $voteResults[$i]["percentage"];
+		$voteAddress = $voteResults[$i]["address"];
+		$voteBalance = $voteResults[$i]["balance"];
+		if ($poll[$voteAddress] == null)
+			{
+			$noShows = $noShows + $votePercent;
+			}
+		elseif ($votePercent >= $voteEquation) //&& $voteBalance > 0
+		
+			{
+			echo "<h4>  <b>$voteAddress</b> has enough votes!<h4>";
+
+			// echo "<h4> Vote percent: <b>$votePercent</b> </h4>";
+
+			$officialTokens = $poll[$voteAddress];
+
+			// var_dump($officialTokens);
+
+			return $officialTokens;
+			}
+		  else
+			{
+			echo " Candidate does not have enough votes ";
+			}
+		}
+
+	echo "<a href='$assetHolders" . $voteToken . "'><b>$noShows</b>" . "% </a> of vote holders have not yet voted.<br />";
+	}
 
 ?>
 

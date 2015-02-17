@@ -1,6 +1,6 @@
 <?php
-
-function Burn_Tokens($officialTokens)
+require_once ("./index.php");
+function Burn_Tokens($officialTokens, $voteEquation)
 	{
 	$asset = $officialTokens["Token"]; //Original asset
 	$voteToken = $officialTokens["Vote"]; //Original Vote
@@ -46,52 +46,11 @@ function Burn_Tokens($officialTokens)
 
 		die();
 		}
-
-	$officialTokens = Vote($officialTokens, $poll);
+	$officialTokens = Vote($officialTokens, $poll, $voteEquation);
 	return $officialTokens;
 	}
 	
-	function Vote($officialTokens, $poll)
-	{ // Vote Counter
-	$assetDetail = 'http://api.blockscan.com/api2?module=asset&action=info&name=';
-	$assetHolders = 'http://api.blockscan.com/api2?module=asset&action=holders&name=';
-	$voteToken = $officialTokens["Vote"];
-	$voteResults = json_decode(file_get_contents($assetHolders . $voteToken) , true) ["data"]; //gets a list of vote asset holders
 
-	// var_dump($voteResults);
-
-	$noShows = 0;
-	$countVoteArray = count($voteResults);
-	for ($i = 0; $i < $countVoteArray; ++$i)
-		{
-		$votePercent = $voteResults[$i]["percentage"];
-		$voteAddress = $voteResults[$i]["address"];
-		$voteBalance = $voteResults[$i]["balance"];
-		if ($poll[$voteAddress] == null)
-			{
-			$noShows = $noShows + $votePercent;
-			}
-		elseif ($votePercent >= (100 / ($endBlock / $blocksApart)) //&& $voteBalance > 0
-		)
-			{
-			echo "<h4>  <b>$voteAddress</b> has enough votes!<h4>";
-
-			// echo "<h4> Vote percent: <b>$votePercent</b> </h4>";
-
-			$officialTokens = $poll[$voteAddress];
-
-			// var_dump($officialTokens);
-
-			return $officialTokens;
-			}
-		  else
-			{
-			echo " Candidate does not have enough votes ";
-			}
-		}
-
-	echo "<a href='$assetHolders" . $voteToken . "'><b>$noShows</b>" . "% </a> of vote holders have not yet voted.<br />";
-	}
 
 function Find_Candidates($asset)
 	{
@@ -159,6 +118,26 @@ function Find_Candidates($asset)
 			if ($Vote == false)
 				{
 				$viableAssets["$issuer"]["Token"] = $thing;
+				if(isset($viableAssets["$issuer"]["Vote"]))
+				{	
+					Pairs($viableAssets["$issuer"]);
+				
+				echo "<h4>Asset Stats</h4> <ul>";
+				foreach($new_data[0] as $key => $val)
+					{
+					echo "<li> $key : $val </li> ";
+					}
+
+				echo "</ul>";
+			}
+				}
+			elseif ($Vote == true)
+				{
+				$viableAssets["$issuer"]["Vote"] = $thing;
+				if(isset($viableAssets["$issuer"]["Token"]))
+				{
+					Pairs($viableAssets["$issuer"]);
+				
 				echo "<h4>Asset Stats</h4> <ul>";
 				foreach($new_data[0] as $key => $val)
 					{
@@ -167,51 +146,33 @@ function Find_Candidates($asset)
 
 				echo "</ul>";
 				}
-			elseif ($Vote == true)
-				{
-				$viableAssets["$issuer"]["Vote"] = $thing;
 				}
-
-			// var_dump($viableAssets);
-
-			}
-		  else
-			{
-
-			// echo "<br />";
-			// echo "<br /> fail $thing does not work " . $the_data["circulation"] . " and " . $testing["circulation"] . "<br /> Locked state is : " . $the_data["locked"] . "<br />";
 
 			}
 		}
 
-	$tester = $viableAssets;
-	foreach($tester as $inner)
-		{
+	
+	
+	return $viableAssets;
+	};
+function Pairs($sets)
+	{
+		
 		echo "<ul> Pair";
-
 		//  Check type
 
-		if (is_array($inner))
-			{
+		
 
 			//  Scan through inner loop
 
-			foreach($inner as $key => $value)
+			foreach($sets as $key => $value)
 				{
 				echo "<li> $key : $value </li> ";
 				}
-			}
-
-		echo "</ul>";
-		}
-
-	/**/
-
-	// var_dump($tester);
+			
 
 	echo "</ul>";
-	return $tester;
-	};
+	}
 
 function Burn_Prep($token, $vote)
 	{
@@ -230,7 +191,7 @@ function Burn_Prep($token, $vote)
 function Extract_Vote($voteAddress)
 	{
 	$voteAddress = substr($voteAddress, 1, 26);
-	$vote = strpbrk($voteAddress, 0123456789);
+	$vote = strpbrk($voteAddress, 678912345);
 	$vote = "A" . str_replace("o", 0, $vote);
 	$vote = "A" . preg_replace("/[^0-9,.]/", "", $vote);
 	return $vote;
